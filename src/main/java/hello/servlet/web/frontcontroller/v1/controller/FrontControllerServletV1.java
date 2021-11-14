@@ -32,7 +32,7 @@ public class FrontControllerServletV1 extends HttpServlet {
       response.setStatus(HttpServletResponse.SC_NOT_FOUND);
     }
 
-    controller.proccess(request, response);
+    controller.process(request, response);
   }
 
 }
