@@ -35,7 +35,7 @@ public class FrontControllerServletV3 extends HttpServlet {
     }
     // paramMap
     // method 추출 단축키 : option + command + M
-    Map<String, Object> paramMap = createParamMap(request);
+    Map<String, String> paramMap = createParamMap(request);
 
     ModelView modelView = controller.process(paramMap);
 
@@ -50,8 +50,8 @@ public class FrontControllerServletV3 extends HttpServlet {
     return new MyView("/WEB-INF/views/" + viewName + ".jsp");
   }
 
-  private Map<String, Object> createParamMap(HttpServletRequest request) {
-    Map<String, Object> paramMap = new HashMap<>();
+  private Map<String, String> createParamMap(HttpServletRequest request) {
+    Map<String, String> paramMap = new HashMap<>();
     request.getParameterNames().asIterator()
         .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter("username")));
     return paramMap;
