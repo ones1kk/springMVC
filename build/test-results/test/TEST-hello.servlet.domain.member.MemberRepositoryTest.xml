@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hello.servlet.domain.member.MemberRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-11-11T15:12:30" hostname="gim-wonsig-ui-MacBookPro.local" time="0.061">
+<testsuite name="hello.servlet.domain.member.MemberRepositoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-11-13T14:29:04" hostname="gim-wonsig-ui-MacBookPro.local" time="0.1">
   <properties/>
-  <testcase name="findAll()" classname="hello.servlet.domain.member.MemberRepositoryTest" time="0.059"/>
+  <testcase name="findAll()" classname="hello.servlet.domain.member.MemberRepositoryTest" time="0.099"/>
   <testcase name="save()" classname="hello.servlet.domain.member.MemberRepositoryTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
