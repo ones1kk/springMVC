@@ -15,23 +15,20 @@ import org.springframework.util.StreamUtils;
 @WebServlet(name = "requestJsonServlet", urlPatterns = "/request-body-json")
 public class RequestBodyJsonServlet extends HttpServlet {
 
-  private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-  @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    ServletInputStream inputStream = request.getInputStream();
-    String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        ServletInputStream inputStream = request.getInputStream();
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
 
-    System.out.println("MessageBody = " + messageBody);
-    System.out.println();
+        System.out.println("messageBody = " + messageBody);
 
-    HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
+        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
 
-    System.out.println("helloData.username = " + helloData.getUsername());
-    System.out.println("helloData.username = " + helloData.getAge());
-
-    response.getWriter().write("ok");
-  }
+        System.out.println("helloData.username = " + helloData.getUsername());
+        System.out.println("helloData.age = " + helloData.getAge());
+    }
 
 }
