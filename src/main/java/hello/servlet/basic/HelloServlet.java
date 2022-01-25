@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServlet;
 @WebServlet(name = "helloServlet", urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet {
 
-  @Override
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    System.out.println("HelloServlet.Service");
-    System.out.println("request : " + request);
-    System.out.println("response : " + response);
+    @Override
+    public void service(ServletRequest request, ServletResponse response)
+        throws ServletException, IOException {
+        System.out.println("HelloServlet.service");
 
-    String username = request.getParameter("username");
-    System.out.println("username : " + username);
+        System.out.println("request = " + request);
+        System.out.println("response = " + response);
 
-    response.setContentType("text/plain");
-    response.setCharacterEncoding("utf-8");
-    response.getWriter().write("hello "+ username);
+        String username = request.getParameter("username");
+        System.out.println("username = " + username);
 
-  }
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("utf-8");
+        response.getWriter().write("hello " + username);
+
+    }
 }
