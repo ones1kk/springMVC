@@ -12,29 +12,29 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "memberFormServlet", urlPatterns = "/servlet/members/new-form")
 public class MemberFormServlet extends HttpServlet {
 
-  // 싱글톤 객체기 때문에 new 불가
-  private MemberRepository memberRepository = MemberRepository.getInstance();
+    // 싱글톤 객체기 때문에 new 불가
+    private static final MemberRepository memberRepository = MemberRepository.getInstance();
 
-  @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html");
-    response.setCharacterEncoding("utf-8");
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
 
-    PrintWriter pw = response.getWriter();
-    pw.write("<!DOCTYPE html>\n" +
-        "<html>\n" +
-        "<head>\n" +
-        " <meta charset=\"UTF-8\">\n" +
-        " <title>Title</title>\n" +
-        "</head>\n" +
-        "<body>\n" +
-        "<form action=\"/servlet/members/save\" method=\"post\">\n" +
-        " username: <input type=\"text\" name=\"username\" />\n" +
-        " age: <input type=\"text\" name=\"age\" />\n" +
-        " <button type=\"submit\">전송</button>\n" +
-        "</form>\n" +
-        "</body>\n" +
-        "</html>\n");
-  }
+        PrintWriter pw = response.getWriter();
+        pw.write("<!DOCTYPE html>\n" +
+            "<html>\n" +
+            "<head>\n" +
+            " <meta charset=\"UTF-8\">\n" +
+            " <title>Title</title>\n" +
+            "</head>\n" +
+            "<body>\n" +
+            "<form action=\"/servlet/members/save\" method=\"post\">\n" +
+            " username: <input type=\"text\" name=\"username\" />\n" +
+            " age: <input type=\"text\" name=\"age\" />\n" +
+            " <button type=\"submit\">전송</button>\n" +
+            "</form>\n" +
+            "</body>\n" +
+            "</html>\n");
+    }
 }
