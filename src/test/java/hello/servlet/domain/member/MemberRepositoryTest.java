@@ -8,41 +8,41 @@ import org.junit.jupiter.api.Test;
 
 class MemberRepositoryTest {
 
-  MemberRepository memberRepository = MemberRepository.getInstance();
+    MemberRepository memberRepository = MemberRepository.getInstance();
 
-  @AfterEach
-  void afterEach() {
-    memberRepository.clearStore();
-  }
+    @AfterEach
+    void afterEach() {
+        memberRepository.clearStore();
+    }
 
-  @Test
-  void save() {
+    @Test
+    void save() {
+        // given
+        Member member = new Member("hello", 20);
 
-    // given
-    Member member = new Member("hello", 20);
-    // when
-    Member saveMember = memberRepository.save(member);
-    // then
-    Member findMember = memberRepository.findById(saveMember.getId());
-    assertThat(findMember).isEqualTo(saveMember);
-  }
+        // when
+        Member savedMember = memberRepository.save(member);
 
-  @Test
-  void findAll(){
-    // given
-    Member member1 = new Member("member1",20);
-    Member member2= new Member("member2",20);
+        // then
+        Member findMember = memberRepository.findById(member.getId());
 
-    memberRepository.save(member1);
-    memberRepository.save(member2);
+        assertThat(findMember).isEqualTo(savedMember);
+    }
 
-    // when
-    List<Member> result = memberRepository.findAll();
-    // then
+    @Test
+    void findAll() {
+        // given
+        Member member1 = new Member("member1", 20);
+        Member member2 = new Member("member2", 20);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
 
-    assertThat(result.size()).isEqualTo(2);
-    assertThat(result).contains(member1,member2);
+        // when
+        List<Member> result = memberRepository.findAll();
 
-  }
+        // then
+        assertThat(result.size()).isEqualTo(2);
+        assertThat(result).contains(member1, member2);
+    }
 
 }
