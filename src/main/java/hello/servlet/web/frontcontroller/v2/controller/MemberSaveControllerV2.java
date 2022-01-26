@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MemberSaveControllerV2 implements ControllerV2 {
 
-  private final MemberRepository memberRepository = MemberRepository.getInstance();
+    private final MemberRepository memberRepository = MemberRepository.getInstance();
 
-  @Override
-  public MyView process(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    @Override
+    public MyView process(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
 
-    String userName = request.getParameter("username");
-    int age = Integer.parseInt(request.getParameter("age"));
+        String userName = request.getParameter("username");
+        int age = Integer.parseInt(request.getParameter("age"));
 
-    Member member = new Member(userName, age);
-    memberRepository.save(member);
+        Member member = new Member(userName, age);
+        memberRepository.save(member);
 
-    request.setAttribute("member", member);
+        request.setAttribute("member", member);
 
-    return new MyView("/WEB-INF/views/save-result.jsp");
-  }
+        return new MyView("/WEB-INF/views/save-result.jsp");
+    }
 }
