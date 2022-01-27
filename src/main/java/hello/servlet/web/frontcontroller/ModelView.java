@@ -1,6 +1,5 @@
 package hello.servlet.web.frontcontroller;
 
-import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,12 +8,12 @@ import lombok.Setter;
 @Setter
 public class ModelView {
 
-  private String viewName;
+    private String viewName;
 
-  private Map<String, Object> model = new HashMap<>();
+    private Map<String, Object> model;
 
-  public ModelView(String viewName) {
-    this.viewName = viewName;
-  }
+    public ModelView(String viewName) {
+        this.viewName = viewName;
+    }
 
 }

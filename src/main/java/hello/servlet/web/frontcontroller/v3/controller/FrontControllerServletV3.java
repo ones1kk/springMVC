@@ -15,46 +15,44 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "frontControllerServletV3", urlPatterns = "/front-controller/v3/*")
 public class FrontControllerServletV3 extends HttpServlet {
 
-  private final Map<String, ControllerV3> controllerV3Map = new HashMap<>();
+    private final Map<String, ControllerV3> controllerV3Map = new HashMap<>();
 
-  public FrontControllerServletV3() {
-    controllerV3Map.put("/front-controller/v3/members/new-form", new MemberFormControllerV3());
-    controllerV3Map.put("/front-controller/v3/members/save", new MemberSaveControllerV3());
-    controllerV3Map.put("/front-controller/v3/members", new MemberListControllerV3());
-  }
-
-  @Override
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    System.out.println("FrontControllerServletV3.service");
-
-    String requestURI = request.getRequestURI();
-    ControllerV3 controller = controllerV3Map.get(requestURI);
-    if (controller == null) {
-      response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+    public FrontControllerServletV3() {
+        controllerV3Map.put("/front-controller/v3/members/new-form", new MemberFormControllerV3());
+        controllerV3Map.put("/front-controller/v3/members/save", new MemberSaveControllerV3());
+        controllerV3Map.put("/front-controller/v3/members", new MemberListControllerV3());
     }
-    // paramMap
-    // method 추출 단축키 : option + command + M
-    Map<String, String> paramMap = createParamMap(request);
 
-    ModelView modelView = controller.process(paramMap);
+    @Override
+    public void service(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
 
-    String viewName = modelView.getViewName();
-    MyView myView = viewResolver(viewName);
+        String requestURI = request.getRequestURI();
 
-    myView.render(modelView.getModel(), request, response);
+        ControllerV3 controller = controllerV3Map.get(requestURI);
+        if (controller == null) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
 
-  }
+        Map<String, String> paramMap = createParamMap(request);
 
-  private MyView viewResolver(String viewName) {
-    return new MyView("/WEB-INF/views/" + viewName + ".jsp");
-  }
+        ModelView mv = controller.process(paramMap);
+        String viewName = mv.getViewName();
 
-  private Map<String, String> createParamMap(HttpServletRequest request) {
-    Map<String, String> paramMap = new HashMap<>();
-    request.getParameterNames().asIterator()
-        .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
-    return paramMap;
-  }
+        MyView view = viewResolver(viewName);
+        view.render(mv.getModel(), request, response);
 
+    }
+
+    private MyView viewResolver(String viewName) {
+        return new MyView("/WEB-INF/views/" + viewName + ".jsp");
+    }
+
+    private Map<String, String> createParamMap(HttpServletRequest request) {
+        Map<String, String> paramMap = new HashMap<>();
+        request.getParameterNames().asIterator().forEachRemaining(
+            paramName -> paramMap.put(paramName, request.getParameter(paramName)));
+        return paramMap;
+    }
 }

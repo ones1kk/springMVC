@@ -10,14 +10,15 @@ import java.util.Map;
 // Shift + F6 File Rename
 public class MemberListControllerV3 implements ControllerV3 {
 
-  private final MemberRepository memberRepository = MemberRepository.getInstance();
+    private final MemberRepository memberRepository = MemberRepository.getInstance();
 
-  @Override
-  public ModelView process(Map<String, String> paramMap) {
-    List<Member> members = memberRepository.findAll();
-    ModelView modelView = new ModelView("members");
-    modelView.getModel().put("members", members);
+    @Override
+    public ModelView process(Map<String, String> paramMap) {
+        List<Member> members = memberRepository.findAll();
 
-    return modelView;
-  }
+        ModelView modelView = new ModelView("members");
+        modelView.getModel().put("members", members);
+
+        return modelView;
+    }
 }
