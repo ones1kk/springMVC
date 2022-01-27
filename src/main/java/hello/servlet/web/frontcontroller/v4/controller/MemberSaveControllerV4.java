@@ -7,21 +7,21 @@ import java.util.Map;
 
 public class MemberSaveControllerV4 implements ControllerV4 {
 
-  private final MemberRepository memberRepository = MemberRepository.getInstance();
+    private final MemberRepository memberRepository = MemberRepository.getInstance();
 
-  @Override
-  public String process(Map<String, String> paramMap, Map<String, Object> model) {
-    String username = paramMap.get("username");
-    int age = Integer.parseInt(paramMap.get("age"));
+    @Override
+    public String process(Map<String, String> paramMap, Map<String, Object> model) {
+        String username = paramMap.get("username");
+        int age = Integer.parseInt(paramMap.get("age"));
 
-    System.out.println(username);
-    System.out.println(age);
+        System.out.println(username);
+        System.out.println(age);
 
-    Member member = new Member(username, age);
-    memberRepository.save(member);
+        Member member = new Member(username, age);
+        memberRepository.save(member);
 
-    model.put("member", member);
-    return "save-result";
-  }
+        model.put("member", member);
+        return "save-result";
+    }
 
 }
