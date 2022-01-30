@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.HttpRequestHandler;
+
 @Component("/spring-mvc/request-handler")
 public class MyHttpRequestHandler implements HttpRequestHandler {
 
