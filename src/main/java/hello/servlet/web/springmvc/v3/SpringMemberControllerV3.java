@@ -23,8 +23,8 @@ public class SpringMemberControllerV3 {
 
     @PostMapping("save")
     public String save(
-        @RequestParam("username") String username,
-        @RequestParam("age") int age,
+        @RequestParam String username,
+        @RequestParam int age,
         Model model) {
 
         Member member = new Member(username, age);
